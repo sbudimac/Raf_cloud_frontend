@@ -1,0 +1,28 @@
+<div>
+  <h3>Users</h3>
+  <div class="mb-2">
+    <table class="table">
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>C</th>
+        <th>R</th>
+        <th>U</th>
+        <th>D</th>
+      </tr>
+      <tr *ngFor="let user of users;">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td><a [routerLink]="'/update'"
+               (click)="storeUser(user.id, user.firstName, user.lastName, user.email, user.permissions.canCreateUsers, user.permissions.canReadUsers, user.permissions.canUpdateUsers, user.permissions.canDeleteUsers)"
+               [class.disabled]="hasUpdatePermission()" class="nav-link active" aria-current="page">{{user.email}}</a></td>
+        <td>{{user.permissions.canCreateUsers.toString()}}</td>
+        <td>{{user.permissions.canReadUsers.toString()}}</td>
+        <td>{{user.permissions.canUpdateUsers.toString()}}</td>
+        <td>{{user.permissions.canDeleteUsers.toString()}}</td>
+        <td *ngIf="hasDeletePermission()"><button (click)="deleteUser(user.id)">Delete</button></td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div>
+  <form [formGroup]="updateUserForm" class="mb-5">
+    <div class="form-group mb-3">
+      <label for="inputFirstName" class="form-label">First name</label>
+      <input type="text" class="form-control" id="inputFirstName" [formControlName]="'firstName'">
+      <div class="error-message text-danger" *ngIf="updateUserForm.get('firstName')?.errors?.required"> First name is required! </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="inputLastName" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="inputLastName" [formControlName]="'lastName'">
+      <div class="error-message text-danger" *ngIf="updateUserForm.get('lastName')?.errors?.required"> Last name is required! </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="inputEmail" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" [formControlName]="'email'">
+      <div class="error-message text-danger" *ngIf="updateUserForm.get('email')?.errors?.required"> Email is required! </div>
+    </div>
+  </form>
+  <h4>Permissions:</h4>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="create" [checked]="isCreateUsers()" (change)="onCanCreateUsers()">
+    <label class="form-check-label" for="create">
+      Create
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="read" [checked]="isReadUsers()" (change)="onCanReadUsers()">
+    <label class="form-check-label" for="read">
+      Read
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="update" [checked]="isUpdateUsers()" (change)="onCanUpdateUsers()">
+    <label class="form-check-label" for="update">
+      Update
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="delete" [checked]="isDeleteUsers()" (change)="onCanDeleteUsers()">
+    <label class="form-check-label" for="delete">
+      Delete
+    </label>
+  </div>
+  <button [disabled]="!updateUserForm.valid" (click)="updateUser()" type="submit" class="btn btn-primary">Update</button>
+</div>
+

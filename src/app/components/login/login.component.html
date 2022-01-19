@@ -1,0 +1,16 @@
+<div>
+  <form [formGroup]="loginInputForm" class="mb-5">
+    <div class="form-group mb-3">
+      <label for="inputEmail" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" [formControlName]="'email'">
+      <div class="error-message text-danger" *ngIf="loginInputForm.get('email')?.errors?.required"> Email is required! </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="inputPassword" class="form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword" [formControlName]="'password'">
+      <div class="error-message text-danger" *ngIf="loginInputForm.get('password')?.errors?.required"> Password is required! </div>
+    </div>
+    <button [disabled]="!loginInputForm.valid" (click)="login()" type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
+

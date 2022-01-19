@@ -1,0 +1,21 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a [routerLink]="'/home'" class="nav-link active" aria-current="page">Home</a>
+          <a [routerLink]="'/users'" class="nav-link active" aria-current="page">User list</a>
+          <a *ngIf="!logged(); else lo" [routerLink]="'/login'" class="nav-link active" aria-current="page">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<ng-template #lo>
+  <a (click)="logout()" [routerLink]="'/login'" class="nav-link active" aria-current="page">Logout</a>
+</ng-template>
+
+<div class="container pt-3">
+  <router-outlet></router-outlet>
+</div>
