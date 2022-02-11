@@ -10,6 +10,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './components/home/home.component';
+import { MachinesComponent } from './components/machines/machines.component';
+import { MachineCreationComponent } from './components/machine-creation/machine-creation.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HomeComponent } from './components/home/home.component';
     UsersComponent,
     UserAdditionComponent,
     EditUserComponent,
-    HomeComponent
+    HomeComponent,
+    MachinesComponent,
+    MachineCreationComponent
   ],
   imports: [
     BrowserModule,

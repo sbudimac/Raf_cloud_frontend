@@ -1,0 +1,17 @@
+<div>
+  <form [formGroup]="createMachineForm" class="mb-5">
+    <div class="form-group mb-3">
+      <label for="machineName" class="form-label">First name</label>
+      <input type="text" class="form-control" id="machineName" aria-describedby="emailHelp" [formControlName]="'name'">
+      <div class="error-message text-danger" *ngIf="createMachineForm.get('name')?.errors?.required"> Machine name is required! </div>
+    </div>
+  <h4>Active/not active:</h4>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="create" (change)="onActive()">
+    <label class="form-check-label" for="create">
+      Active
+    </label>
+  </div>
+  <button [disabled]="!createMachineForm.valid" (click)="createMachine()" type="submit" class="btn btn-primary">Create machine</button>
+  </form>
+</div>

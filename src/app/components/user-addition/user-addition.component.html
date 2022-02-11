@@ -46,6 +46,42 @@
       Delete
     </label>
   </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="createMachines" (change)="onCanCreateMachines()">
+    <label class="form-check-label" for="createMachines">
+      CreateMachines
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="searchMachines" (change)="onCanSearchMachines()">
+    <label class="form-check-label" for="searchMachines">
+      SearchMachines
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="startMachines" (change)="onCanStartMachines()">
+    <label class="form-check-label" for="startMachines">
+      Start Machines
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="restartMachines" (change)="onCanRestartMachines()">
+    <label class="form-check-label" for="restartMachines">
+      Restart Machines
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="stopMachines" (change)="onCanStopMachines()">
+    <label class="form-check-label" for="stopMachines">
+      Stop Machines
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="destroyMachines" (change)="onCanDestroyMachines()">
+    <label class="form-check-label" for="destroyMachines">
+      Destroy Machines
+    </label>
+  </div>
   <button [disabled]="!addUserForm.valid" (click)="addUser()" type="submit" class="btn btn-primary">Add user</button>
 </div>
 

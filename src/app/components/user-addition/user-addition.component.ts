@@ -18,6 +18,12 @@ export class UserAdditionComponent implements OnInit {
   canCreateUsers: boolean
   canUpdateUsers: boolean
   canDeleteUsers: boolean
+  canCreateMachines: boolean
+  canSearchMachines: boolean
+  canStartMachines: boolean
+  canRestartMachines: boolean
+  canStopMachines: boolean
+  canDestroyMachines: boolean
   addUserForm: FormGroup
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
@@ -29,6 +35,12 @@ export class UserAdditionComponent implements OnInit {
     this.canCreateUsers = false
     this.canUpdateUsers = false
     this.canDeleteUsers = false
+    this.canCreateMachines = false
+    this.canSearchMachines = false
+    this.canStartMachines = false
+    this.canRestartMachines = false
+    this.canStopMachines = false
+    this.canDestroyMachines = false
     this.addUserForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -57,10 +69,34 @@ export class UserAdditionComponent implements OnInit {
     this.canDeleteUsers = !this.canDeleteUsers
   }
 
+  onCanCreateMachines(): void {
+    this.canCreateMachines = !this.canCreateMachines
+  }
+
+  onCanSearchMachines(): void {
+    this.canSearchMachines = !this.canSearchMachines
+  }
+
+  onCanStartMachines(): void {
+    this.canStartMachines = !this.canStartMachines
+  }
+
+  onCanRestartMachines(): void {
+    this.canRestartMachines = !this.canRestartMachines
+  }
+
+  onCanStopMachines(): void {
+    this.canStopMachines = !this.canStopMachines
+  }
+
+  onCanDestroyMachines(): void  {
+    this.canDestroyMachines = !this.canDestroyMachines
+  }
+
   addUser(): void {
     this.userService.addUser(
       this.addUserForm.get('firstName')?.value, this.addUserForm.get('lastName')?.value, this.addUserForm.get('email')?.value, this.addUserForm.get('password')?.value,
-      this.canCreateUsers, this.canReadUsers, this.canUpdateUsers, this.canDeleteUsers
+      this.canCreateUsers, this.canReadUsers, this.canUpdateUsers, this.canDeleteUsers, this.canCreateMachines, this.canSearchMachines, this.canStartMachines, this.canRestartMachines, this.canStopMachines, this.canDestroyMachines
     ).subscribe((user) => {
       this.addUserForm.reset()
     }, (error => {

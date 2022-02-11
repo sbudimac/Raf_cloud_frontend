@@ -10,18 +10,31 @@
         <th>R</th>
         <th>U</th>
         <th>D</th>
+        <th></th>
+        <th>CREATE</th>
+        <th>SEARCH</th>
+        <th>START</th>
+        <th>RESTART</th>
+        <th>STOP</th>
+        <th>DESTROY</th>
       </tr>
       <tr *ngFor="let user of users;">
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td><a [routerLink]="'/update'"
-               (click)="storeUser(user.id, user.firstName, user.lastName, user.email, user.permissions.canCreateUsers, user.permissions.canReadUsers, user.permissions.canUpdateUsers, user.permissions.canDeleteUsers)"
+               (click)="storeUser(user.id, user.firstName, user.lastName, user.email, user.permissions.canCreateUsers, user.permissions.canReadUsers, user.permissions.canUpdateUsers, user.permissions.canDeleteUsers, user.permissions.canCreateMachines, user.permissions.canSearchMachines, user.permissions.canStartMachines, user.permissions.canRestartMachines, user.permissions.canStopMachines, user.permissions.canDestroyMachines)"
                [class.disabled]="hasUpdatePermission()" class="nav-link active" aria-current="page">{{user.email}}</a></td>
         <td>{{user.permissions.canCreateUsers.toString()}}</td>
         <td>{{user.permissions.canReadUsers.toString()}}</td>
         <td>{{user.permissions.canUpdateUsers.toString()}}</td>
         <td>{{user.permissions.canDeleteUsers.toString()}}</td>
         <td *ngIf="hasDeletePermission()"><button (click)="deleteUser(user.id)">Delete</button></td>
+        <td>{{user.permissions.canCreateMachines}}</td>
+        <td>{{user.permissions.canSearchMachines}}</td>
+        <td>{{user.permissions.canStartMachines}}</td>
+        <td>{{user.permissions.canRestartMachines}}</td>
+        <td>{{user.permissions.canStopMachines}}</td>
+        <td>{{user.permissions.canDestroyMachines}}</td>
       </tr>
     </table>
   </div>

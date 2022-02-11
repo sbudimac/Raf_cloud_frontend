@@ -10,10 +10,13 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('jwt') === null)
   }
 
   hasCreatePermission(): boolean {
     return localStorage.getItem('create') === 'true';
+  }
+
+  hasCreateMachinePermission(): boolean {
+    return localStorage.getItem('createMachines') === 'true';
   }
 }

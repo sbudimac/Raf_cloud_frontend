@@ -31,15 +31,25 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('jwt', loginResponse.jwt)
       this.loginInputForm.reset()
       this.router.navigate([`/home`])
-      this.loginService.getPermissions().subscribe((permissionResponse) => {
-        console.log(permissionResponse)
-        localStorage.setItem('create', permissionResponse.permissions.canCreateUsers.toString())
-        localStorage.setItem('read', permissionResponse.permissions.canReadUsers.toString())
-        localStorage.setItem('update', permissionResponse.permissions.canUpdateUsers.toString())
-        localStorage.setItem('delete', permissionResponse.permissions.canDeleteUsers.toString())
-        if (localStorage.getItem('create') === 'false' && localStorage.getItem('read') === 'false' && localStorage.getItem('update') === 'false' && localStorage.getItem('delete') === 'false') {
-          alert("You have no permissions.")
-        }
+      this.loginService.getCurrent().subscribe((user) => {
+        localStorage.setItem('id', user.id.toString())
+        this.loginService.getPermissions().subscribe((permissionResponse) => {
+          localStorage.setItem('create', permissionResponse.permissions.canCreateUsers.toString())
+          localStorage.setItem('read', permissionResponse.permissions.canReadUsers.toString())
+          localStorage.setItem('update', permissionResponse.permissions.canUpdateUsers.toString())
+          localStorage.setItem('delete', permissionResponse.permissions.canDeleteUsers.toString())
+          localStorage.setItem('searchMachines', permissionResponse.permissions.canSearchMachines.toString())
+          localStorage.setItem('startMachines', permissionResponse.permissions.canStartMachines.toString())
+          localStorage.setItem('stopMachines', permissionResponse.permissions.canStopMachines.toString())
+          localStorage.setItem('restartMachines', permissionResponse.permissions.canRestartMachines.toString())
+          localStorage.setItem('createMachines', permissionResponse.permissions.canCreateMachines.toString())
+          localStorage.setItem('destroyMachines', permissionResponse.permissions.canDeleteUsers.toString())
+          if (localStorage.getItem('create') === 'false' && localStorage.getItem('read') === 'false' && localStorage.getItem('update') === 'false' && localStorage.getItem('delete') === 'false'
+            && localStorage.getItem('searchMachines') === 'false' && localStorage.getItem('startMachines') === 'false' && localStorage.getItem('stopMachines') === 'false'
+            && localStorage.getItem('restartMachines') === 'false' && localStorage.getItem('createMachines') === 'false' && localStorage.getItem('destroyMachines') === 'false') {
+            alert("You have no permissions.")
+          }
+        })
       })
     }, (error => {
       if (error.status === 401) {

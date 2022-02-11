@@ -35,7 +35,8 @@ export class UsersComponent implements OnInit {
     return localStorage.getItem('delete') === 'true'
   }
 
-  storeUser(id: number, firstName: string, lastName: string, email: string, canCreateUsers: boolean, canReadUsers: boolean, canUpdateUsers: boolean, canDeleteUsers: boolean): void {
+  storeUser(id: number, firstName: string, lastName: string, email: string, canCreateUsers: boolean, canReadUsers: boolean, canUpdateUsers: boolean, canDeleteUsers: boolean,
+  canCreateMachines: boolean, canSearchMachines: boolean, canStartMachines: boolean, canRestartMachines: boolean, canStopMachines: boolean, canDestroyMachines: boolean): void {
     localStorage.setItem('uId', id.toString())
     localStorage.setItem('uFirstName', firstName)
     localStorage.setItem('uLastName', lastName)
@@ -44,6 +45,12 @@ export class UsersComponent implements OnInit {
     localStorage.setItem('uCanReadUsers', canReadUsers.toString())
     localStorage.setItem('uCanUpdateUsers', canUpdateUsers.toString())
     localStorage.setItem('uCanDeleteUsers', canDeleteUsers.toString())
+    localStorage.setItem('uCanCreateMachines', canCreateMachines.toString())
+    localStorage.setItem('uCanSearchMachines', canSearchMachines.toString())
+    localStorage.setItem('uCanStartMachines', canStartMachines.toString())
+    localStorage.setItem('uCanRestartMachines', canRestartMachines.toString())
+    localStorage.setItem('uCanStopMachines', canStopMachines.toString())
+    localStorage.setItem('uCanDestroyMachines', canDestroyMachines.toString())
   }
 
   deleteUser(id: number): void {

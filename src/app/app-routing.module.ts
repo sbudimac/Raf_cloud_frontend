@@ -8,6 +8,8 @@ import {UpdateGuard} from "./guards/update.guard";
 import {EditUserComponent} from "./components/edit-user/edit-user.component";
 import {CreateGuard} from "./guards/create.guard";
 import {HomeComponent} from "./components/home/home.component";
+import {MachinesComponent} from "./components/machines/machines.component";
+import {MachineCreationComponent} from "./components/machine-creation/machine-creation.component";
 
 const routes: Routes = [
   {
@@ -32,6 +34,14 @@ const routes: Routes = [
     path: "update",
     component: EditUserComponent,
     canActivate: [UpdateGuard]
+  },
+  {
+    path: "machines",
+    component: MachinesComponent
+  },
+  {
+    path: "createMachines",
+    component: MachineCreationComponent
   }
 ];
 
