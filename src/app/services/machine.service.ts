@@ -32,11 +32,25 @@ export class MachineService {
 
   searchMachines(userId: number, name: string, statusRunning: boolean, statusStopped: boolean, dateFrom: string | null, dateTo: string | null): Observable<Machine[]> {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
-
     return this.httpClient.get<Machine[]>(
       `${this.apiUrl}/api/machines/search/${userId}?${this.fillParams(name, statusRunning, statusStopped, dateFrom, dateTo)}`,
       {headers: headers}
     )
+  }
+
+  startrMachine(machineId: number): Observable<any> {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
+    return this.httpClient.patch(`${this.apiUrl}/api/machines/start/${machineId}`, {}, {headers: headers})
+  }
+
+  stopMachine(machineId: number): Observable<any> {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
+    return this.httpClient.patch(`${this.apiUrl}/api/machines/stop/${machineId}`, {}, {headers: headers})
+  }
+
+  restartMachine(machineId: number): Observable<any> {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
+    return this.httpClient.patch(`${this.apiUrl}/api/machines/restart/${machineId}`, {}, {headers: headers})
   }
 
   fillParams(name: string, statusRunning: boolean, statusStopped: boolean, dateFrom: string | null, dateTo: string | null): string {

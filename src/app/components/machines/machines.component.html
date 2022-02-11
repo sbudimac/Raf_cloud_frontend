@@ -11,6 +11,10 @@
         <td>{{machine.name}}</td>
         <td>{{machine.status}}</td>
         <td>{{machine.date}}</td>
+        <td *ngIf="hasStartMachinesPermission()"><button (click)="startMachine(machine.id)">Start</button></td>
+        <td *ngIf="hasRestartMachinesPermission()"><button (click)="restartMachine(machine.id)">Restart</button></td>
+        <td *ngIf="hasStopMachinesPermission()"><button (click)="stopMachine(machine.id)">Stop</button></td>
+        <td *ngIf="hasDestroyMachinesPermission()"><button (click)="destroyMachine(machine.id)">Destroy</button></td>
       </tr>
     </table>
   </div>

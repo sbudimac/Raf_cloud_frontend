@@ -28,6 +28,7 @@ export interface Permissions {
 }
 
 export interface Machine {
+  id: number,
   name: string,
   date: Date,
   status: Status,

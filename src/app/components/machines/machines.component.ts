@@ -37,6 +37,22 @@ export class MachinesComponent implements OnInit {
     }))
   }
 
+  hasStartMachinesPermission(): boolean {
+    return localStorage.getItem('startMachines') === 'true'
+  }
+
+  hasRestartMachinesPermission(): boolean {
+    return localStorage.getItem('restartMachines') === 'true'
+  }
+
+  hasStopMachinesPermission(): boolean {
+    return localStorage.getItem('stopMachines') === 'true'
+  }
+
+  hasDestroyMachinesPermission(): boolean {
+    return localStorage.getItem('destroyMachines') === 'true'
+  }
+
   searchMachines(): void {
     this.machineService.searchMachines(this.userId, this.name, this.statusRunning, this.statusStopped, this.formatDate(this.dateFrom), this.formatDate(this.dateTo)).subscribe((machines) => {
       this.machines = machines
@@ -45,6 +61,55 @@ export class MachinesComponent implements OnInit {
         alert("You are not authorized to perform this action.")
       }
     }))
+  }
+
+  startMachine(id: number): void {
+    this.machineService.startrMachine(id).subscribe( () => {
+      alert("Machine is started")
+      this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+        this.machines = machines
+        setTimeout( () => {
+          this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+            this.machines = machines
+          })
+        }, 15000)
+      })
+      }
+    )
+  }
+
+  restartMachine(id: number): void {
+    this.machineService.restartMachine(id).subscribe( () => {
+        alert("Machine has begun a restart")
+        this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+          this.machines = machines
+          setTimeout( () => {
+            this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+              this.machines = machines
+            })
+          }, 30000)
+        })
+      }
+    )
+  }
+
+  stopMachine(id: number): void {
+    this.machineService.stopMachine(id).subscribe( () => {
+        alert("Machine is stopped")
+        this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+          this.machines = machines
+          setTimeout( () => {
+            this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+              this.machines = machines
+            })
+          }, 15000)
+        })
+      }
+    )
+  }
+
+  destroyMachine(id: number): void {
+
   }
 
   formatDate(date: Date) {
