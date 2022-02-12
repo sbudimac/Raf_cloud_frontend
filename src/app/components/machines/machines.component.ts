@@ -149,7 +149,11 @@ export class MachinesComponent implements OnInit {
   }
 
   destroyMachine(id: number): void {
-
+    this.machineService.destroyMachine(id).subscribe( () => {
+      this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+        this.machines = machines
+      })
+    })
   }
 
   formatDate(date: Date) {

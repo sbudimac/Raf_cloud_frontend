@@ -68,6 +68,11 @@ export class MachineService {
     return this.httpClient.patch(`${this.apiUrl}/api/machines/schedule/restart/${id}`, {date: date}, {headers: headers})
   }
 
+  destroyMachine(id: number) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
+    return this.httpClient.delete<any>(`${this.apiUrl}/api/machines/${id}`, {headers: headers})
+  }
+
   fillParams(name: string, statusRunning: boolean, statusStopped: boolean, dateFrom: string | null, dateTo: string | null): string {
     let params = '';
     if (name !== '') {
