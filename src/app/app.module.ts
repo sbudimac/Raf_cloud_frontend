@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './components/home/home.component';
 import { MachinesComponent } from './components/machines/machines.component';
 import { MachineCreationComponent } from './components/machine-creation/machine-creation.component';
+import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MachineCreationComponent } from './components/machine-creation/machine-
     EditUserComponent,
     HomeComponent,
     MachinesComponent,
-    MachineCreationComponent
+    MachineCreationComponent,
+    ErrorMessagesComponent
   ],
   imports: [
     BrowserModule,

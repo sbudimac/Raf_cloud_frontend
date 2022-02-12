@@ -16,6 +16,7 @@ export class MachinesComponent implements OnInit {
   dateFrom!: Date
   dateTo!: Date
   userId: number
+  scheduleFor!: string
 
   constructor(private machineService: MachineService) {
     this.machines = []
@@ -78,6 +79,21 @@ export class MachinesComponent implements OnInit {
     )
   }
 
+  stopMachine(id: number): void {
+    this.machineService.stopMachine(id).subscribe( () => {
+        alert("Machine is stopped")
+        this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+          this.machines = machines
+          setTimeout( () => {
+            this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
+              this.machines = machines
+            })
+          }, 15000)
+        })
+      }
+    )
+  }
+
   restartMachine(id: number): void {
     this.machineService.restartMachine(id).subscribe( () => {
         alert("Machine has begun a restart")
@@ -93,19 +109,43 @@ export class MachinesComponent implements OnInit {
     )
   }
 
-  stopMachine(id: number): void {
-    this.machineService.stopMachine(id).subscribe( () => {
-        alert("Machine is stopped")
-        this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
-          this.machines = machines
-          setTimeout( () => {
-            this.machineService.getAllUserMachines(this.userId).subscribe( (machines) => {
-              this.machines = machines
-            })
-          }, 15000)
-        })
-      }
-    )
+  scheduleStart(id: number) {
+    if (this.scheduleFor === undefined) {
+      alert("No schedule date selected.")
+      return
+    } else if (this.scheduleFor.toString() === '') {
+      alert("No schedule date selected.")
+      return
+    }
+    this.machineService.scheduleStart(id, this.scheduleFor.replace('T', ' ')).subscribe( () => {
+      alert("Operation scheduled.")
+    })
+  }
+
+  scheduleStop(id: number) {
+    if (this.scheduleFor === undefined) {
+      alert("No schedule date selected.")
+      return
+    } else if (this.scheduleFor.toString() === '') {
+      alert("No schedule date selected.")
+      return
+    }
+    this.machineService.scheduleStop(id, this.scheduleFor.replace('T', ' ')).subscribe( () => {
+      alert("Operation scheduled.")
+    })
+  }
+
+  scheduleRestart(id: number) {
+    if (this.scheduleFor === undefined) {
+      alert("No schedule date selected.")
+      return
+    } else if (this.scheduleFor.toString() === '') {
+      alert("No schedule date selected.")
+      return
+    }
+    this.machineService.scheduleRestart(id, this.scheduleFor.replace('T', ' ')).subscribe( () => {
+      alert("Operation scheduled.")
+    })
   }
 
   destroyMachine(id: number): void {

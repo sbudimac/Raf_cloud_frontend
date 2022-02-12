@@ -53,6 +53,21 @@ export class MachineService {
     return this.httpClient.patch(`${this.apiUrl}/api/machines/restart/${machineId}`, {}, {headers: headers})
   }
 
+  scheduleStart(id: number, date: string) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
+    return this.httpClient.patch(`${this.apiUrl}/api/machines/schedule/start/${id}`, {date: date}, {headers: headers})
+  }
+
+  scheduleStop(id: number, date: string) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
+    return this.httpClient.patch(`${this.apiUrl}/api/machines/schedule/stop/${id}`, {date: date}, {headers: headers})
+  }
+
+  scheduleRestart(id: number, date: string) {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
+    return this.httpClient.patch(`${this.apiUrl}/api/machines/schedule/restart/${id}`, {date: date}, {headers: headers})
+  }
+
   fillParams(name: string, statusRunning: boolean, statusStopped: boolean, dateFrom: string | null, dateTo: string | null): string {
     let params = '';
     if (name !== '') {
