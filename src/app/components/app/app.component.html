@@ -6,6 +6,7 @@
           <a [routerLink]="'/home'" class="nav-link active" aria-current="page">Home</a>
           <a *ngIf="logged()" [routerLink]="'/users'" class="nav-link active" aria-current="page">User list</a>
           <a *ngIf="logged()" [routerLink]="'/machines'" class="nav-link active" aria-current="page">Machines</a>
+          <a *ngIf="logged()" [routerLink]="'/errors'" class="nav-link active" aria-current="page">Error messages</a>
           <a *ngIf="!logged(); else lo" [routerLink]="'/login'" class="nav-link active" aria-current="page">Login</a>
         </div>
       </div>

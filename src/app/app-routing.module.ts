@@ -10,6 +10,7 @@ import {CreateGuard} from "./guards/create.guard";
 import {HomeComponent} from "./components/home/home.component";
 import {MachinesComponent} from "./components/machines/machines.component";
 import {MachineCreationComponent} from "./components/machine-creation/machine-creation.component";
+import {ErrorMessagesComponent} from "./components/error-messages/error-messages.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: "createMachines",
     component: MachineCreationComponent
+  },
+  {
+    path: "errors",
+    component: ErrorMessagesComponent
   }
 ];
 

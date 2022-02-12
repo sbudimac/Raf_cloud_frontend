@@ -40,3 +40,10 @@ export enum Status {
   STOPPED,
   RUNNING
 }
+
+export interface ErrorMessage {
+  date: Date,
+  machineId: number,
+  operation: string,
+  message: string
+}
